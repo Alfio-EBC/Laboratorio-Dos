@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Api jsonplaceholder</title>
+        <link rel="stylesheet" href="/css/estilos.css">
+    </head>
+    <body>
+        <div id="fotosContenedor"></div>
+        <script src="script.js"></script>
+    
+    </body>
+
+    <script>
+        async function consultar() {
+            const rta = await fetch("https://jsonplaceholder.typicode.com/photos", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (!rta.ok) {
+                throw new Error("Red error: " + rta.status);
+            }
+
+            const datos = await rta.json();
+            console.log(rta.status + " ---- " + JSON.stringify(datos));
+
+            const container = document.getElementById("fotosContenedor");
+            for (let x = 0; x < 20 && x < datos.length; x++) {
+                const photo = datos[x];
+                const fotoDiv = document.createElement("div");
+                fotoDiv.className = "Foto";
+
+                const TituloFoto = document.createElement("h3");
+                TituloFoto.textContent = photo.title;
+                TituloFoto.className = "Titulos";
+
+                const imagenFoto = document.createElement("img");
+                imagenFoto.src = photo.thumbnailUrl;
+                imagenFoto.alt = photo.title;
+
+                fotoDiv.appendChild(TituloFoto);
+                fotoDiv.appendChild(imagenFoto);
+                container.appendChild(fotoDiv);
+            }
+        }
+
+        function getData() {
+            consultar();
+            return true;
+        }
+
+        window.onload = getData;
+    </script>
+</html>

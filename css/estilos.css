@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+h3 {
+    font-family: "Open Sans", sans-serif;
+    text-transform: capitalize;
+    font-size: 0.9rem;
+    height: 55px;
+}   
+img {
+    background-color: whitesmoke;
+    min-height: 210px;
+    width: 100%;
+}
+.Foto {
+    display: inline-flex;
+    flex-direction: column-reverse;
+}
+#fotosContenedor {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+#fotosContenedor > div {
+    width: 200px;
+}
